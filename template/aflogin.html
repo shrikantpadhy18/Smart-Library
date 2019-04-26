@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     {%  load static %}
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>SELECT YOUR BRANCH</title>
+    <style>
+    iframe
+    {
+        width: 100%;
+        height:940px;
+    }
+</style>
+</head>
+<body style="background-color: orange">
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
+  <div class="container-fluid">
+    <ul>
+         <li><a class="waves-effect waves-light btn"  href="http://127.0.0.1:8000/forum/fe/" target="myframe">FE</a></li>
+
+         <li><a class="waves-effect waves-light btn" href="http://127.0.0.1:8000/forum/Itbooks/" target="myframe">IT</a></li>
+           <li><a class="waves-effect waves-light btn" href="http://127.0.0.1:8000/forum/Instrubooks/" target="myframe">INSTRUMENTATION</a></li>
+             <li><a class="waves-effect waves-light btn" href="http://127.0.0.1:8000/Compsbooks/" target="myframe">COMPS</a></li>
+             <li><a class="waves-effect waves-light btn" href="http://127.0.0.1:8000/forum/Elecbooks/" target="myframe">ELECTRONICS</a></li>
+             <li><a class="waves-effect waves-light btn"  href="http://127.0.0.1:8000/forum/Extbooks/" target="myframe">EXTC</a></li>
+
+
+    </ul>
+    
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+       <li><a class="waves-effect waves-light btn" href="/forum/IssuingStatus">ISSUE_STATUS</a></li>
+                               
+                              <li><a class="waves-effect waves-light btn" href="/logout">LOGOUT</a></li>
+                              <li ><a  href="" ><p style="color: red;background-color: yellow ;font-style: italic;font-family: algerian;font-weight: bold;font-size: 20px">WELCOME {{ so.user.username}}</p></a></li>
+
+    </ul>
+  </div>
+</nav>
+
+<iframe src="https://image.freepik.com/free-vector/books-stack-realistic_1284-4735.jpg" name="myframe"  >
+
+
+ 
+</iframe>
+
+</body>
+</html>

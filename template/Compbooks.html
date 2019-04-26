@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	  {%  load static %}
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>BOOKS DETAIL</title>
+</head>
+<body style="background-color: lightgreen">
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
+  <div class="container-fluid">
+    
+    <ul >
+       <li><a class="waves-effect waves-light btn" href="http://127.0.0.1:8000/forum/bookissue/">BOOKISSUE</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+<div class="container">
+            <h1 style="font-family: Algerian">search books information</h1>
+            <form method="post" action="/search/">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="col-lg-5">
+                        <input type="text" name="srh" class="form-control" placeholder="enter bookname or bookid ">
+                    </div>
+                    <label class="col-lg-2">
+                        <button type="submit" class "btn btn-danger">SEARCH</button>
+                    </label>
+
+                </div>
+
+    </form><br><br>
+
+    <div>
+        {% if messages %}
+        <ul class="messages">
+            {% for k in messages %}
+            <li style="color: red">{{k}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div><br>
+<div style="color: blue;font-weight: bold;">
+
+    {% if sr %}
+            <table> 
+                <tr>
+                    <th>ID</th>
+        <th>Bookid</th>
+        <th>Author</th>
+        <th>Bookname</th>
+        <th>Publisher</th>
+        <th>Year</th>
+                </tr>
+
+        {% for k in sr %}
+        <tr>
+            <td>{{k.id}}</td>
+        <td>{{k.bookid}}</td>
+
+
+        <td>{{k.author}}</td>
+
+        <td>{{k.bookname}}</td>
+
+        <td>{{k.publisher}}</td>
+        <td>{{k.year}}</td>
+
+        </tr>
+        {% endfor %}
+            </table>
+            {% endif %}
+        
+        </div>
+
+        
+    
+
+
+
+<div style="color: black;font-weight: bold">
+<div class='container' >
+    <div class='col-sm-6'>
+        <div class='panel panel-default' style="width:760px;background-color:pink;">
+            <div class='panel-heading' style="background-color: orange;"><p style="font-style: italic;font-weight: bold;font-size: 30px ">HERE ARE BOOKS AVAILABLE IN OUR LIBRARY</p></div>
+            <div class='panel-body'>
+
+<table>
+<tr>
+<th>ID</th>
+<th>Bookid</th>
+<th>Author</th>
+<th>Bookname</th>
+<th>Publisher</th>
+<th>Year</th>
+</tr>
+{% for pin in pro %}
+<tr>
+<td>{{pin.id}}</td>
+<td>{{pin.bookid}}</td>
+
+
+<td>{{pin.author}}</td>
+
+<td>{{pin.bookname}}</td>
+
+<td>{{pin.publisher}}</td>
+<td>{{pin.year}}</td>
+</tr>
+{% endfor %}
+
+    </table>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+</body>
+</html>

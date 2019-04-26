@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{%  load static %}
+    
+    <title>LOGIN PORTAL</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
+
+<link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <meta charset="UTF-8">
+<style>
+.navbar-default {
+    background-color: orange;
+    border-color: red;
+}
+
+</style>
+   
+</head>
+<body style="background-image: url('https://images.unsplash.com/photo-1520099078215-db50d947d060?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80');background-color: aliceblue">
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="">LIBRARY MANAGEMENT SYSTEM</a>
+    </div>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+       <li><a class="waves-effect waves-light btn" href="/">HOME</a></li>
+       <li><a  class="waves-effect waves-light btn" href="/register">REGISTER</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class='container' >
+    <div class='col-sm-6'>
+        <div class='panel panel-default' style="width:560px;height:340px;background-color: aliceblue">
+            <div class='panel-heading' style="background-color: orange;font-weight: bold;font-size: 20px;font-family: Algerian">LOGIN</div>
+            <div class='panel-body'>
+<form method="POST">{% csrf_token %}
+    {{ form.as_p }}
+    
+    <p style="text-align: center"><button type="submit" style="background-color:lightgreen;color:black">LOGIN</button></p>
+
+</form>
+</div>
+</div>
+</div>
+</body>
+</html>

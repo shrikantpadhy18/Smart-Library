@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
+  <div class="container-fluid">
+         <a href="" class="brand-logo">ENTER BOOK DETAILS</a>
+  </div>
+</nav>
+<h1>
+  
+</h1>
+<div class='container' >
+    <div class='col-sm-6'>
+        <div class='panel panel-default'>
+            <div class='panel-heading' style="background-color: pink;color:blue;font-size: 30px">ENTER  BOOK DETAILS WHICH YOU WANT TO ISSUE</div>
+            <div class='panel-body'>
+    <form method="POST">{% csrf_token %}
+    {{ posts.as_p }}
+    <p style="text-align: center"><button type="submit" style="background-color:lightgreen;color:black" >SUBMIT</button></p>
+
+</form>
+</div>
+</div>
+</div>    
+    </form>
+
+{% endblock %}

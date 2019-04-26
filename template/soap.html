@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	  {%  load static %}
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>ISSUING STATUS</title>
+</head>
+<body style="color:blue;background-color: lightgreen">
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
+  <div class="container-fluid">
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+       <li><a  class="waves-effect waves-light btn" href="http://127.0.0.1:8000/forum/bookissue/">BOOKISSUE</a></li>
+       <li><a class="waves-effect waves-light btn" href="/logout">LOGOUT</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container">
+            <h1 style="font-style: italic;color: black;font-family: Algerian">CHECK ISSUING STATUS AND DUEDATE</h1>
+            <form method="post" action="/searchy/">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="col-lg-5">
+                        <input type="text" name="srh" class="form-control" placeholder="enter username or bookid ">
+                    </div>
+                    <label class="col-lg-2">
+                        <button type="submit" class "btn btn-danger">SEARCH</button>
+                    </label>
+
+                </div>
+
+    </form><br><br>
+
+    <div>
+        {% if messages %}
+        <ul class="messages">
+            {% for k in messages %}
+            <li style="color: red">{{k}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div><br>
+<div style="color: green;font-weight: bold;">
+
+    {% if sr %}
+
+    <div class='container' >
+    <div class='col-sm-6'>
+        <div class='panel panel-default' style="width:760px;height:30%;background-color:pink;">
+            <div class='panel-heading ' style="background-color:orange">STATUS</div>
+            <div class='panel-body'>
+            <table> 
+                <tr>
+                    <th>ID</th>
+        <th>Bookid</th>
+        <th>rollno</th>
+        <th>Bookname</th>
+        <th>issuingdate</th>
+        <th>returnstatus</th>
+        <th>DueDate</th>
+                </tr>
+
+        {% for k in sr %}
+        <tr>
+            <td>{{k.id}}</td>
+        <td>{{k.bookid}}</td>
+
+
+        <td>{{k.rollno}}</td>
+
+        <td>{{k.bookname}}</td>
+
+        <td>{{k.issuingstatus}}</td>
+        <td>{{k.returnstatus}}</td>
+        <td>{{k.DUE_DATE}}</td>
+
+        </tr>
+        {% endfor %}
+            </table>
+            {% endif %}
+        
+        </div>
+
+         </div>
+</div>
+</div>
+
+
+
+
+</body>
+</html>
