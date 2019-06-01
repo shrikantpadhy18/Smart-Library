@@ -48,19 +48,42 @@
 </nav>
 
 
-<div class='container' >
+<div class='container' style="position: relative;left: 70px">
     <div class='col-sm-6'>
-        <div class='panel panel-default' style="width:560px;height:340px;background-color: aliceblue">
-            <div class='panel-heading' style="background-color: orange;font-weight: bold;font-size: 20px;font-family: Algerian">LOGIN</div>
+        <div class='panel panel-default' style="width:600px;height:600px;background-color: aliceblue ">
+            <div class='panel-heading' style="background-color: orange;font-weight: bold;font-size: 20px;font-family: Algerian;"> <img src="https://www.brandcrowd.com/gallery/brands/pictures/picture15495061583236.png" alt="Avatar" class="rectangle responsive-img" style="height: 80px;position:relative;left:0.2px"><b style="position: relative;left: 10px">LOGIN</b></div>
             <div class='panel-body'>
-<form method="POST">{% csrf_token %}
+<form method="POST"  >{% csrf_token %}
+   <div class="imgcontainer">
+    <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="circle responsive-img" style="height: 120px;position:relative;left:225px">
+  </div>
     {{ form.as_p }}
+
     
     <p style="text-align: center"><button type="submit" style="background-color:lightgreen;color:black">LOGIN</button></p>
 
+<div class="container"
+     <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+</div>
+
+<div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
+    <span class="psw">Forgot <a href="#">password?</a></span>
+</div>
 </form>
 </div>
 </div>
 </div>
+
+ 
+
 </body>
+<footer style="position:relative;top:750px;right:60px;height:140px;background-color:lightgreen">
+        <p style="font-style: italic;font-family: algerian;font-weight: bold ;font-size: 15px;position: relative;right: 195px">"The library is the temple of learning, and learning has liberated more people than all the wars in history"- Carl T. Rowan"</p>
+
+
+  
+</footer>
 </html>
