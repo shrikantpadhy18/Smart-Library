@@ -5,6 +5,9 @@
  <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
   <div class="container-fluid">
          <a href="" class="brand-logo">ENTER BOOK DETAILS</a>
+         <ul  class="right hide-on-med-and-down">
+             <li onmouseover="effect()">{{user.first_name}} {{user.last_name}}</li>
+         </ul>
   </div>
 </nav>
 <h1>
@@ -24,5 +27,14 @@
 </div>
 </div>    
     </form>
+    <script type="text/javascript">
+      function effect()
+      {
+        alert("logged in  {{user.email}}")
+      }
+    </script>
+
 
 {% endblock %}
+
+
