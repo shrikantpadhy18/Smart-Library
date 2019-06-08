@@ -26,6 +26,9 @@
         height:940px;
     }
 </style>
+<script type="text/javascript">
+  alert("your profile:\nfirstname={{po.first_name}}\nlastname={{po.last_name}}\nemail:{{po.email}}\nyour unique username:{{po.username}}\n{{pass}}")
+</script>
 </head>
 <body style="background-color: orange">
 
@@ -34,13 +37,13 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
   <div class="container-fluid">
     <ul>
-         <li><a class="waves-effect waves-light btn"  href="http://127.0.0.1:8000/forum/fe/" target="myframe">FE</a></li>
+         <li onclick="effect1()"><a class="waves-effect waves-light btn"  href="http://127.0.0.1:8000/forum/fe/" target="myframe">FE</a></li>
 
-         <li><a class="waves-effect waves-light btn" href="http://127.0.0.1:8000/forum/Itbooks/" target="myframe">IT</a></li>
-           <li><a class="waves-effect waves-light btn" href="http://127.0.0.1:8000/forum/Instrubooks/" target="myframe">INSTRUMENTATION</a></li>
-             <li><a class="waves-effect waves-light btn" href="http://127.0.0.1:8000/Compsbooks/" target="myframe">COMPS</a></li>
-             <li><a class="waves-effect waves-light btn" href="http://127.0.0.1:8000/forum/Elecbooks/" target="myframe">ELECTRONICS</a></li>
-             <li><a class="waves-effect waves-light btn"  href="http://127.0.0.1:8000/forum/Extbooks/" target="myframe">EXTC</a></li>
+         <li onclick="effect2()"><a class="waves-effect waves-light btn" href="http://127.0.0.1:8000/forum/Itbooks/" target="myframe">IT</a></li>
+           <li onclick="effect4()"><a class="waves-effect waves-light btn" href="http://127.0.0.1:8000/forum/Instrubooks/" target="myframe">INSTRUMENTATION</a></li>
+             <li onclick="effect3()"><a class="waves-effect waves-light btn" href="http://127.0.0.1:8000/Compsbooks/" target="myframe">COMPS</a></li>
+             <li onclick="effect5()"><a class="waves-effect waves-light btn" href="http://127.0.0.1:8000/forum/Elecbooks/" target="myframe">ELECTRONICS</a></li>
+             <li onclick="effect6()"><a class="waves-effect waves-light btn"  href="http://127.0.0.1:8000/forum/Extbooks/" target="myframe">EXTC</a></li>
               <li style="position: relative;left: 70px"><img  style="height: 60px " src="https://www.brandcrowd.com/gallery/brands/pictures/picture15495061583236.png"></li>
 
 
@@ -50,7 +53,7 @@
        <li><a class="waves-effect waves-light btn" href="/forum/IssuingStatus">ISSUE_STATUS</a></li>
                                
                               <li><a class="waves-effect waves-light btn" href="/logout">LOGOUT</a></li>
-                              <li ><a  href="" ><h6 style="color: red;background-color: yellow ;font-style: italic;font-family: algerian;font-weight: bold;font-size: 20px">WELCOME {{ so.user.username}}</h6></a></li>
+                              <li ><a  href="" ><h6 style="color: red;background-color: yellow ;font-style: italic;font-family: algerian;font-weight: bold;font-size: 20px">WELCOME {{ so.username}}</h6></a></li>
 
     </ul>
   </div>
@@ -62,6 +65,32 @@
 
  
 </iframe>
+<script type="text/javascript">
+  function effect1()
+  {
+    alert("Books for FIRST YEAR ENGINEERING STUDENTS")
+  }
+  function effect2()
+  {
+    alert("Books for IT BRANCH STUDENTS")
+  }
+  function effect3()
+  {
+    alert("Books for COMPS BRANCH STUDENTS")
+  }
+  function effect4()
+  {
+    alert("Books for INSTRUMENTATION BRANCH STUDENTS")
+  }
+  function effect5()
+  {
+    alert("Books for ELECTRONICS BRANCH STUDENTS")
+  }
+  function effect6()
+  {
+    alert("Books for EXTC BRANCH STUDENTS")
+  }
+</script>
 
 </body>
 </html>
