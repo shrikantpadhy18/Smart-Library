@@ -1,40 +1,44 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	  {%  load static %}
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
-<!-- jQuery library -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<!-- Latest compiled JavaScript -->
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
-    <!-- Compiled and minified CSS -->
+   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-    <!-- Compiled and minified JavaScript -->
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <meta charset="UTF-8">
     <title>BOOKS DETAIL</title>
+    
 </head>
 <body style="background-color: lightgreen">
 
-
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
+        <div class="container-fluid">
     
     <ul >
        <li><a class="waves-effect waves-light btn" href="http://127.0.0.1:8000/forum/bookissue/">BOOKISSUE</a></li>
     </ul>
-  </div>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li onmouseover="effect()">{{user.first_name}} {{user.last_name}}</li>
+    </ul>
+        </div>
 </nav>
 
 
 
-<div class="container">
+
+<div class="container" >
             <h1 style="font-family: Algerian">search books information</h1>
             <form method="post" action="/search/">
                 {% csrf_token %}
@@ -43,7 +47,7 @@
                         <input type="text" name="srh" class="form-control" placeholder="enter bookname or bookid ">
                     </div>
                     <label class="col-lg-2">
-                        <button type="submit" class "btn btn-danger">SEARCH</button>
+                        <button type="submit" class ="btn btn-danger">SEARCH</button>
                     </label>
 
                 </div>
@@ -136,6 +140,12 @@
 </div>
 
 
+<script type="text/javascript">
+      function effect()
+      {
+        alert("logged in  {{user.email}}")
+      }
+    </script>
 
 </body>
 </html>
