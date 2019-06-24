@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import post, productform
 from django.http  import HttpResponse
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,auth
 from django.views.generic.edit import DeleteView
 from django.urls import reverse_lazy
 from . models import Books,Branch,BookId
@@ -14,6 +14,7 @@ from . forms import NewUserForm
 from django.contrib.auth.forms import AuthenticationForm 
 from django.contrib import messages
 from . models import Image
+from collections import Counter
 def homepage(request):
     image=Image.objects.all()
     return render(request,"base1.html",{'image':image})
@@ -26,19 +27,33 @@ def bookissue(request):
             p=posts.cleaned_data['branch']
             r=posts.cleaned_data['bookid']
             mat1=Branch.objects.filter(Q(branch__iexact=p))
-            mat2=BookId.objects.filter(Q(bookid__iexact=r))
+            ex1=COMPSBooks.objects.filter(bookid=r).exists()
+            ex2=ITBooks.objects.filter(bookid=r).exists()
+            ex3=EXTCBooks.objects.filter(bookid=r).exists()
+            ex4=ELECTRONICSBooks.objects.filter(bookid=r).exists()
+            ex5=FE.objects.filter(bookid=r).exists()
+            ex6=INSTRUBooks.objects.filter(bookid=r).exists()
 
-            if mat1 and mat2:
-                posts.cleaned_data['rollno']=request.user.username
-                Books.objects.create(**posts.cleaned_data)
-                return HttpResponse("<h1>REQUEST SUBMITTED SUCCESSFULLY")
+
+            if mat1 and (ex1 or ex2 or ex3 or ex4 or ex5 or ex6):
+                if Books.objects.filter(bookid=r).exists():
+
+                    return HttpResponse("<h1>This book has been issued Kindly look for other")
+                elif(Books.objects.filter(rollno=request.user.username).count()==4):
+                    return HttpResponse("<h1>YOU CAN'T ISSUE ANY BOOK NOW BECAUSE YOU ALEADY HAVE ISSUED FOUR BOOKS")
+
+                else:
+                    posts.cleaned_data['rollno']=request.user.username
+                    Books.objects.create(**posts.cleaned_data)
+                    return HttpResponse("<h1>REQUEST SUBMITTED SUCCESSFULLY")
             else:
                 return HttpResponse("<h1>INVALID BOOKID OR BRANCH")
 
         else:
             return HttpResponse("<h1>YOU HAVE ENTERED INVALID DATA")
     mycontext={
-        'posts':posts
+        'posts':posts,
+        'user':User.objects.get(username=request.user.username)
     }
     return render(request,"file1.html",mycontext)
 def search(request):
@@ -58,8 +73,8 @@ def search(request):
 
             match5=INSTRUBooks.objects.filter(Q(bookname__istartswith=srch) | Q(bookid__startswith=srch) | Q(year__icontains=srch))
 
-            if match6:
-                return render(request,'Compbooks.html',{'sr':match6})
+            if match6 :
+                    return render(request,'Compbooks.html',{'sr':match6})
 
             elif match1:
                 return render(request,'Compbooks.html',{'sr':match1})
@@ -90,15 +105,12 @@ def register(request):
         if form.is_valid():
             user=form.save()
             username = form.cleaned_data.get('username')
-            FIRSTNAME=form.cleaned_data.get('FIRSTNAME')
-            LASTNAME = form.cleaned_data.get('LASTNAME')
-            EMAIL = form.cleaned_data.get('EMAIL')
+            first_name=form.cleaned_data.get('first_name')
+            last_name = form.cleaned_data.get('last_name')
+            email= form.cleaned_data.get('email')
+            
             user.save()
-            #ROLLNO = form.cleaned_data.get('ROLLNO')
-           # student.objects.create(**form.cleaned_data)
-            #messages.info(request,"new account created:",request.user.username)
             login(request,user)
-            #messages.info(request,"you are now logged in as %s",request.user.username)
             return redirect("http://127.0.0.1:8000/aflogin/")
         else:
             for msg in form.error_messages:
@@ -117,10 +129,13 @@ def login_request(request):
         if form.is_valid():
             username=form.cleaned_data.get('username')
             password=form.cleaned_data.get('password')
+            mycontact=[
+            {'pass':form.cleaned_data.get('password')}
+            ]
             user=authenticate(username=username,password=password)
-            if user is not None:
+            if user is not None and user.username!='DYPATIL':
                 login(request,user)
-                return redirect("http://127.0.0.1:8000/aflogin/")
+                return redirect("http://127.0.0.1:8000/aflogin/",mycontact)
             else:
                 pass
     else:
@@ -131,16 +146,18 @@ def login_request(request):
 
 
 def aflogin(request):
-    
-    return render(request,"aflogin.html",{'so':request})
+    return render(request,"aflogin.html",{'so':request.user,'po':User.objects.get(username=request.user.username)})
 
 def Compsbooks(request):
     pro=COMPSBooks.objects.all()
-    return render(request,"Compbooks.html",{'pro':pro})
+    return render(request,"Compbooks.html",{'pro':pro,'user':User.objects.get(username=request.user.username)})
 
 def fe(request):
     pro=FE.objects.all()
+    
     return render(request,"Compbooks.html",{'pro':pro})
+
+    
 
 def Itbooks(request):
     pro=ITBooks.objects.all()
@@ -162,7 +179,8 @@ def Instrubooks(request):
 
 
 def About(request):
-    return render(request,"check.html")
+    TOTAL_BOOKS=sum(list(Counter(list(BookId.objects.all())).values()))
+    return render(request,"check.html",{'TOTAL_BOOKS':TOTAL_BOOKS})
 
 def IssuingStatus(request):
     pro=Books.objects.all()
@@ -176,7 +194,7 @@ def searchy(request):
         srch = request.POST.get('srh', False)
 
         if srch:
-            match1=Books.objects.filter(Q(rollno__icontains=srch) | Q(bookid__contains=srch))
+            match1=Books.objects.filter(Q(rollno__iexact=srch) | Q(bookid__contains=srch))
 
             if match1:
                 return render(request,'soap.html',{'sr':match1})
@@ -188,4 +206,5 @@ def searchy(request):
             return HttpResponse('/searchy/')
 
     return render(request,'soap.html')
+
 
