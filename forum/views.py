@@ -15,6 +15,9 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from . models import Image
 from collections import Counter
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 def homepage(request):
     image=Image.objects.all()
     return render(request,"base1.html",{'image':image})
@@ -45,7 +48,14 @@ def bookissue(request):
                 else:
                     posts.cleaned_data['rollno']=request.user.username
                     Books.objects.create(**posts.cleaned_data)
+                    server=smtplib.SMTP('smtp.gmail.com',port=587)
+                    server.starttls()
+                    server.login('prashantpadhy21@gmail.com','21052003')
+                    msg='USERNAME='+str(User.objects.get(username=request.user.username))+'\nNAME='+str(request.user.first_name)+'\nbookid='+str(r)+'\nHAS SUCCESSFULLY SUBMITTED THE REQUEST YOU CAN VISIT THE LIBRARY AND COLLECT YOUR BOOKS BETWEEN 10AM TO 2 PM'
+                    server.sendmail('prashantpadhy21@gmail.com',str(request.user.email),msg)
+                    server.quit()
                     return HttpResponse("<h1>REQUEST SUBMITTED SUCCESSFULLY")
+
             else:
                 return HttpResponse("<h1>INVALID BOOKID OR BRANCH")
 
@@ -110,8 +120,23 @@ def register(request):
             email= form.cleaned_data.get('email')
             
             user.save()
+            fromaddr="prashantpadhy21@gmail.com"
+            toaddr=str(email)
+            msg=MIMEMultipart()
+            msg['From']=fromaddr
+            msg['To']=toaddr
+            msg['Subject']="Ramrao Adik Institute Of Technology\n Smart Library"
+            body='USERNAME='+str(username)+'\nYour Name='+str(first_name)+" "+str(last_name)+'\nYOUR ACCOUNT HAS BEEN SUCCESSFULLY CREATED IN RAIT E-LIBRARY'
+            msg.attach(MIMEText(body,'plain'))
+            server=smtplib.SMTP('smtp.gmail.com',port=587)
+            server.starttls()#connection established with gmail
+            server.login(fromaddr,"21052003")
+            text=msg.as_string()
+            server.sendmail(fromaddr,toaddr,text)
+            server.quit() 
+
             login(request,user)
-            return redirect("http://127.0.0.1:8000/aflogin/")
+            return redirect("http://127.0.0.1:8000/aflogin/")       
         else:
             for msg in form.error_messages:
                 print(form.error_messages[msg])
@@ -129,25 +154,20 @@ def login_request(request):
         if form.is_valid():
             username=form.cleaned_data.get('username')
             password=form.cleaned_data.get('password')
-            mycontact=[
-            {'pass':form.cleaned_data.get('password')}
-            ]
+            
             user=authenticate(username=username,password=password)
             if user is not None and user.username!='DYPATIL':
                 login(request,user)
-                return redirect("http://127.0.0.1:8000/aflogin/",mycontact)
+                return redirect("http://127.0.0.1:8000/aflogin/")
             else:
                 pass
     else:
         pass
-
-
     return render(request,"login.html",{'form':form})
 
 
 def aflogin(request):
-    return render(request,"aflogin.html",{'so':request.user,'po':User.objects.get(username=request.user.username)})
-
+    return render(request,"aflogin.html",{'so':request.user,'po':User.objects.filter(username=request.user.username).first()})
 def Compsbooks(request):
     pro=COMPSBooks.objects.all()
     return render(request,"Compbooks.html",{'pro':pro,'user':User.objects.get(username=request.user.username)})
