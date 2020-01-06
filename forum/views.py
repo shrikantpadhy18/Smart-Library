@@ -113,15 +113,19 @@ def register(request):
     if request.method=="POST":
         form=NewUserForm(request.POST)
         if form.is_valid():
-            user=form.save()
-            username = form.cleaned_data.get('username')
-            first_name=form.cleaned_data.get('first_name')
-            last_name = form.cleaned_data.get('last_name')
-            email= form.cleaned_data.get('email')
             
-            user.save()
+            username = form.cleaned_data.get('username')
+            first_name=form.cleaned_data.get('FIRSTNAME')
+            last_name = form.cleaned_data.get('LASTNAME')
+            EMAIL= form.cleaned_data.get('EMAIL')
+            
+            user = User.objects.create_user(
+            username, EMAIL, 
+            first_name=first_name,
+            last_name=last_name,
+            )
             fromaddr="prashantpadhy21@gmail.com"
-            toaddr=str(email)
+            toaddr=str(EMAIL)
             msg=MIMEMultipart()
             msg['From']=fromaddr
             msg['To']=toaddr
@@ -134,7 +138,7 @@ def register(request):
             text=msg.as_string()
             server.sendmail(fromaddr,toaddr,text)
             server.quit() 
-
+       
             login(request,user)
             return redirect("http://127.0.0.1:8000/aflogin/")       
         else:
