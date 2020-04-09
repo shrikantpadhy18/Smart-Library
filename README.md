@@ -3,12 +3,12 @@ This is a library management system for Engineering colleges,it consist of Engin
 
  <html>
 <body>
-<img src="../Screenshots/home.png"><br>
-<img src="../Screenshots/Register.png"><br>
-<img src="../Screenshots/Login.png"><br>
-<img src="../Screenshots/bookissue.png"><br>
-<img src="../Screenshots/Dashboard.png"><br>
-<img src="../Screenshots/issuestate.png">
+<img src="./Screenshots/home.png"><br>
+<img src="./Screenshots/Register.png"><br>
+<img src="./Screenshots/Login.png"><br>
+<img src="./Screenshots/bookissue.png"><br>
+<img src="./Screenshots/Dashboard.png"><br>
+<img src="./Screenshots/issuestate.png">
 </body>
  </html>
 
