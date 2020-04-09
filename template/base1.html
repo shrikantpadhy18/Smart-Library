@@ -3,61 +3,45 @@
 <html lang="en">
 <head>
     {%  load static %}
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-
-
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <title>HOME</title>
 </head>
-<body  style="background-image: url('https://scholarlykitchen.sspnet.org/wp-content/uploads/2016/11/istock_78312587_medium.jpg')" >
+<body   >
 
-<!--JavaScript at end of body for optimized loading-->
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
-     <div class="container-fluid">
-         <a href=" " class="brand-logo">LIBRARY MANAGEMENT SYSTEM</a>
-         <ul id="nav-mobile" class="right hand-on-med-and-down">
-    
-             <li><a class="waves-effect waves-light btn" href="/register">REGISTER</a></li>
-              <li><a class="waves-effect waves-light btn" href="/login">LOGIN</a></li>
-              <li><a  class="waves-effect waves-light btn" href="http://127.0.0.1:8000/admin/login/?next=/admin/">LIBRARIAN</a></li>
-               <li><a class="waves-effect waves-light btn"  href="http://127.0.0.1:8000/forum/About/">ABOUT US</a></li>
+<nav class="navbar navbar-dark bg-dark">
+  
+    <img style="background-color: white;" width="140px" height="150px" src="https://upload.wikimedia.org/wikipedia/commons/4/45/Rait_new_logo_png.png" class="img-fluid" alt="Responsive image"> 
+         <a style="text-align: left;" href="#" class="navbar-brand">LIBRARY MANAGEMENT SYSTEM</a>
+         
+
+         <ul  class="nav nav-pills">
+          <li class="nav-item"><a class="nav-link active"  href="/register">REGISTER</a></li>
+          <li class="nav-item"> <a class="nav-link active"  href="/login">LOGIN</a></li>
+          <li class="nav-item"><a  class="nav-link active"  href="http://127.0.0.1:8000/admin/login/?next=/admin/">LIBRARIAN</a></li>
+            <li class="nav-item"> <a class="nav-link active"  href="http://127.0.0.1:8000/forum/About/">ABOUT US</a></li>
 
               
-         </ul>
-     </div>
 
-</nav>
- <div class="col s12 m8 offset-m2 l6 offset-l3"  >
-        <div class="card-panel grey lighten-5 z-depth-1">
-          <div class="row valign-wrapper" style="background-color: yellow">
-            <div class="col s2" style="background-color: yellow">
-               <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Rait_new_logo_png.png" align="right" alt="" class="rectangle responsive-img"> <!-- notice the "circle" class -->
-            </div>
-            <div class="col s10">
-              <span class="black-text" style="font-style: italic;text-shadow: 10px 10px 5px red;font-size: 65px;font-weight: bolder;font-family: Gill Sans Extrabold, sans-serif">
-              <marquee behavior="alternate"> <p style="font-family: Algerian">WELCOME TO THE LIBRARY</p></marquee>
-               
-              </span>
 
-            </div>
-          </div>
-        </div>
         
-      </div>
+      </ul>
+</nav>
+<br>
+<center><img style="border-radius: 1cm;" width="50%" height="700px" src="https://images.pexels.com/photos/1290141/pexels-photo-1290141.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img-fluid" alt="Responsive image"> </center>
+<footer class="page-footer font-small blue">
+
+  
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://www.linkedin.com/in/shrikant-padhy-9b937317b/"><i class="fa-fa likedin"></i> &copy Developer :Shrikant Padhy</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
 </body>
 </html>
